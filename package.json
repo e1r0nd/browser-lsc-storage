@@ -1,0 +1,23 @@
+{
+  "name": "browser-lsc-storage",
+  "version": "0.0.2",
+  "description": "localStorage, Session Storage and Cookies API wrapper for browser",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "test": "mocha --compilers js:babel-core/register",
+    "lint": "eslint *.js"
+  },
+  "author": "Anatol Merezhanyi aka e1r0nd//[CRG]",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e1r0nd/browser-lsc-storage.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.15.0",
+    "eslint-plugin-babel": "^4.0.1"
+  }
+}
