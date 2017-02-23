@@ -5,19 +5,43 @@
  * Placed in public domain.
  */
 export default class BrowserLocalStorageClass {
-  constructor(dbName) {
-    this.isOK = false;
-    if (! (window && window.localStorage)) {
+  constructor(dbName = '') {
+    const hasLocalStorage = () => {
+      try {
+        if ('undefined' === typeof localStorage) {
+          return false;
+        }
+        // Check Safari's private browsing mode
+        localStorage.setItem('Storage-Test', '1');
+        if (localStorage.getItem('Storage-Test') !== '1') {
+          return false;
+        }
+        localStorage.removeItem('Storage-Test');
+      } catch (error) {
+        console.log(error);
+
+        return false;
+      }
+
+      return true;
+    };
+
+    this._isOK = false;
+    if (!hasLocalStorage()) {
       throw new Error('Local Storage is not available.');
     }
-    this.name = dbName;
+    this._prefix = dbName;
     // Get index
-    this.index = [];
-    const strIndex = localStorage.getItem(`${this.name}-words`);
-    if (strIndex) {
-      this.index = strIndex.split(',');
-    }
-    this.isOK = true;
+    // this.index = [];
+    // const strIndex = localStorage.getItem(`${this.name}-words`);
+    // if (strIndex) {
+      // this.index = strIndex.split(',');
+    // }
+    this._isOK = true;
+  }
+
+  isAvailable() {
+    return this._isOK;
   }
 
   readItem(key) {

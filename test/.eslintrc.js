@@ -30,7 +30,8 @@ module.exports = {
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "parser": "babel-eslint",
   "plugins": [
@@ -120,7 +121,13 @@ module.exports = {
     "radix": 1,
     "vars-on-top": 1,
     "wrap-iife": [1, "inside"],
+
     "yoda": [1, "always", { "onlyEquality": true }],
+    "prefer-destructuring": [
+      "error",
+      {"array": true, "object": false},
+      {"enforceForRenamedProperties": false}
+    ],
 
     /* Strict Mode */
     "strict": [1, "never"],
@@ -213,12 +220,7 @@ module.exports = {
     "no-plusplus": 0,
 
     /* Babel */
-    // "babel/block-scoped-var": 1,
-    // "babel/object-shorthand": [1, "always"],
-    // "babel/generator-star": 1, // deprecated
-    // "babel/generator-star-spacing": [1, "after"],
     "babel/new-cap": 1,
     "babel/object-curly-spacing": [1, "always"]
-    // "babel/space-in-brackets": 1, // deprecated
   }
 }

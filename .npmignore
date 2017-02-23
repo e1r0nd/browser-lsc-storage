@@ -1,6 +1,9 @@
 .jsbeautifyrc
 .editorconfig
 
+# Tests
+test
+
 # Logs
 logs
 *.log
