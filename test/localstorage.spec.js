@@ -6,58 +6,30 @@
  */
 
 import LocalClass from '../localstorage';
-import assert from 'assert';
 import chai from 'chai';
 
 const expect = chai.expect;
 
 describe('# localStorage', () => {
-  it('check availability', () => {
-    const Local = new LocalClass('abc');
-    assert(Local.isAvailable(), true);
+  const Local = new LocalClass('abc');
+
+  it('check for availability', () => {
     expect(Local.isAvailable()).to.be.true;
   });
-});
-
-describe('localStorage', () => {
-  it('check prefix', () => {
-    const Local = new LocalClass('abc');
+  it('check for a prefix', () => {
     Local.prefix = 'qwe';
-    assert.equal(Local.prefix, 'qwe');
+    expect(Local.prefix).to.equal('qwe');
   });
-});
-/*
-describe('localStorage: can search?', () => {
   it('check for a key', () => {
-    assert.equal(Local.has('a-key'), true);
+    expect(Local.hasKey('a-key')).to.be.false;
   });
-});
-
-describe('localStorage: can read?', () => {
-  it('read a key', () => {
-    assert.equal(Local.key('b-key'), 'b-value');
+  it('write & read a key-value pair', () => {
+    expect(Local.key('b-key', 'b-value')).to.be.true;
+    expect(Local.hasKey('b-key')).to.be.true;
+    expect(Local.key('b-key')).to.equal('b-value');
   });
-});
-
-describe('localStorage: can write?', () => {
-  it('write a key', () => {
-    Local.key('c-key', 'c-value');
-    assert.equal(Local.key('c-key'), false);
-  });
-});
-
-describe('localStorage: can delete?', () => {
   it('delete a key', () => {
-    Local.key('d-key', 'd-value');
-    assert.equal(Local.has('d-key'), false);
+    expect(Local.removeKey('b-key')).to.be.true;
+    expect(Local.hasKey('b-key')).to.be.false;
   });
 });
-
-describe('localStorage: destroy?', () => {
-  it('remove all keys', () => {
-    Local.key('e-key', 'e-value');
-    Local.destroy();
-    assert.equal(Local.has('e-key'), false);
-  });
-});
-*/

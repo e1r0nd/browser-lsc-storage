@@ -7,31 +7,25 @@
 
 export default class BrowserLocalStorageClass {
   constructor(dbName = '') {
-    const hasLocalStorage = () => {
-      try {
-        if ('undefined' === typeof localStorage) {
-          return false;
-        }
-        // Check Safari's private browsing mode
-        localStorage.setItem('Storage-Test', '1');
-        if (localStorage.getItem('Storage-Test') !== '1') {
-          return false;
-        }
-        localStorage.removeItem('Storage-Test');
-      } catch (error) {
-        console.log(error);
+    let hasLocalStorage = true;
 
-        return false;
-      }
-
-      return true;
-    };
+    try {
+      hasLocalStorage = 'undefined' !== typeof localStorage;
+      // Check Safari's private browsing mode
+      localStorage.setItem('Storage-Test', '1');
+      hasLocalStorage = '1' === localStorage.getItem('Storage-Test');
+      localStorage.removeItem('Storage-Test');
+    } catch (error) {
+      console.log(error);
+      hasLocalStorage = false;
+    }
 
     this._isOK = false;
-    if (!hasLocalStorage()) {
+    if (!hasLocalStorage) {
       throw new Error('Local Storage is not available.');
     }
     this._prefix = dbName;
+    this._prefixDecorator = this._prefix + (this._prefix && '-');
     this._isOK = true;
   }
 
@@ -43,153 +37,47 @@ export default class BrowserLocalStorageClass {
     return this._prefix;
   }
 
-  set prefix(value) {
+  set prefix(value = '') {
     this._prefix = value;
   }
 
-  // readItem(key) {
-  //   return this.isOK && JSON.parse(localStorage.getItem(key));
-  // }
+  key(key = '', value = '') {
+    if (!key || !this._isOK) {
+      return false;
+    }
 
-  // removeItem(key) {
-  //   if (this.isOK) {
-  //     localStorage.removeItem(key);
-  //   }
-  // }
+    if (value) {
+      // Set value for a key
+      try {
+        localStorage.setItem(`${this._prefixDecorator}${key}`, JSON.stringify(value));
 
-  // storeItem(key, value) {
-  //   if (this.isOK) {
-  //     try {
-  //       localStorage.setItem(key, JSON.stringify(value));
-  //     } catch (err) {
-  //       if ('QUOTA_EXCEEDED_ERR' === err) {
-  //         throw new Error('Local Storage is full');
-  //       }
-  //
-  //       return false;
-  //     }
-  //
-  //     return true;
-  //   }
-  //
-  //   return false;
-  // }
+        return value === this.key(key);
+      } catch (err) {
+        if ('QUOTA_EXCEEDED_ERR' === err) {
+          throw new Error('Local Storage is full');
+        }
 
-  // putSettings(theSettingsObj) {
-  //   this.storeItem(`${this.name}-words-settings`, theSettingsObj);
-  // }
+        return false;
+      }
+    } else {
+      // Read a key
+      return this._isOK && JSON.parse(localStorage.getItem(`${this._prefixDecorator}${key}`));
+    }
+  }
 
-  // getSettings() {
-  //   let settings = this.readItem(`${this.name}-words-settings`);
-  //   if (!settings) {
-  //     // The app runs for the first time, thus
-  //     // Initialize the setting object neeeds to be initialized
-  //     // With default values.
-  //
-  //     // First is for box (or step) 1 in the Leitner box;
-  //     //       Ask the word again after 1 day
-  //     // Second is for box 2 ; ask the word again after 3 days
-  //     // Third is for box 3 ; ask the word again after 7 days
-  //
-  //     // Note: box 0 is for the Learn mode and it not set
-  //     // As the words are accessible all the time
-  //     console.log('initialize settings');
-  //     settings = {
-  //       first: 1,
-  //       second: 3,
-  //       third: 7,
-  //     };
-  //     this.storeItem(`${this.name}-settings`, settings);
-  //     this.storeItem(`${this.name}-language`, 'en_GB');
-  //   }
-  //
-  //   return settings;
-  // }
+  hasKey(key) {
+    if (!this._isOK && key) {
+      return false;
+    }
 
-  // loadWords(theWords) {
-  //   let index = 0;
-  //   const arrayOfKeys = [];
-  //   const storeEachElement = (element) => {
-  //     element.index = `index${++index}`;
-  //     element.step = 0;
-  //     element.date = 0;
-  //     this.storeItem(`${this.name}-${element.index}`, element);
-  //     arrayOfKeys.push(element.index);
-  //   };
-  //
-  //   theWords.forEach(storeEachElement.bind(this));
-  //
-  //   this.storeItem(`${this.name}-words`, arrayOfKeys.join());
-  //   this.index = arrayOfKeys;
-  //
-  //   console.log(`${arrayOfKeys.length} words have been loaded`);
-  // }
+    return Boolean(JSON.parse(localStorage.getItem(`${this._prefixDecorator}${key}`)));
+  }
 
-  // isEmpty() {
-  //   return this.isOK && !this.index.length;
-  // }
+  removeKey(key) {
+    if (this._isOK && key) {
+      localStorage.removeItem(`${this._prefixDecorator}${key}`);
+    }
 
-  // dumpWords() {
-  //   if (this.isOK) {
-  //     let key = '';
-  //     let strValue = '';
-  //     const result = [];
-  //
-  //     const prefixForNumber = `${this.name}-index`;
-  //
-  //     // Go through all keys starting with the name
-  //     // Of the database, i.e 'learnWords-index14'
-  //     // Collect the matching objects into arr
-  //     for (let index = 0; index < localStorage.length; index++) {
-  //       key = localStorage.key(index);
-  //       strValue = localStorage.getItem(key);
-  //
-  //       if (!key.lastIndexOf(prefixForNumber)) {
-  //         result.push(JSON.parse(strValue));
-  //       }
-  //     }
-  //
-  //     // Dump the array as JSON code (for select all / copy)
-  //     console.log(JSON.stringify(result));
-  //   }
-  // }
-
-  // removeObjects(aKeyPrefix) {
-  //   if (this.isOK) {
-  //     let key = '';
-  //     const keysToDelete = [];
-  //
-  //     // Go through all keys starting with the name
-  //     // Of the database, i.e 'learnWords-index14'
-  //     for (let index = 0; index < localStorage.length; index++) {
-  //       key = localStorage.key(index);
-  //
-  //       if (!key.lastIndexOf(aKeyPrefix)) {
-  //         keysToDelete.push(key);
-  //       }
-  //     }
-  //     // Now we have all the keys which should be deleted
-  //     // In the array keysToDelete.
-  //     console.log(keysToDelete);
-  //     keysToDelete.forEach((aKey) => {
-  //       localStorage.removeItem(aKey);
-  //     });
-  //   }
-  // }
-
-  // removeWords() {
-  //   const aKeyPrefix = `${this.name}-index`;
-  //
-  //   this.removeObjects(aKeyPrefix);
-  //   // Reset index
-  //   localStorage.setItem(`${this.name}-words`, '');
-  //   // This one triggers that memorystore is executed
-  //   localStorage.removeItem(`${this.name}-settings`);
-  // }
-
-  // destroy() {
-  //   const aKeyPrefix = this.name;
-  //
-  //   this.removeObjects(aKeyPrefix);
-  // }
+    return !this.hasKey(key);
+  }
 }
