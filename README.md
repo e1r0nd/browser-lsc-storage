@@ -1,4 +1,4 @@
-# browser-lsc-storage
+# browser-lsc-storage [![Build Status](https://travis-ci.org/e1r0nd/browser-lsc-storage.svg?branch=master)](https://travis-ci.org/e1r0nd/browser-lsc-storage)
 localStorage, Session Storage and Cookies API wrapper for browser
 
 ## localStorage Class
