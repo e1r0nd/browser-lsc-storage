@@ -16,6 +16,7 @@ export default class BrowserLocalStorageClass {
       hasLocalStorage = '1' === localStorage.getItem('Storage-Test');
       localStorage.removeItem('Storage-Test');
     } catch (error) {
+      throw new Error(error);
       console.log(error);
       hasLocalStorage = false;
     }

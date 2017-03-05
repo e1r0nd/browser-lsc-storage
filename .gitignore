@@ -10,6 +10,7 @@ pids
 
 # Coverage directory used by tools like istanbul
 coverage
+.coveralls.yml
 
 # node-waf configuration
 .lock-wscript

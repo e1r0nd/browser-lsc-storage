@@ -1,5 +1,6 @@
 .jsbeautifyrc
 .editorconfig
+.coveralls.yml
 
 # Tests
 test
