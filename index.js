@@ -4,7 +4,7 @@
  * http://linkedin.com/in/merezhany/ a.merezhany@gmail.com
  * Placed in public domain.
  */
-import BrowserCookieStorageClass from './cookiestorage.js';
+import BrowserCookieStorageClass from './cookiesstorage.js';
 import BrowserLocalStorageClass from './localstorage.js';
 import BrowserSessionStorageClass from './sessionstorage.js';
 
