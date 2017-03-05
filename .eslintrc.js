@@ -203,6 +203,7 @@ module.exports = {
     "no-var": 1,
     "object-shorthand": 0, // see Babel section
     "prefer-const": 1,
+    "no-confusing-arrow": ["error", {"allowParens": true}],
 
     /* Legacy */
     "max-depth": [0, 3],
@@ -213,12 +214,7 @@ module.exports = {
     "no-plusplus": 0,
 
     /* Babel */
-    // "babel/block-scoped-var": 1,
-    // "babel/object-shorthand": [1, "always"],
-    // "babel/generator-star": 1, // deprecated
-    // "babel/generator-star-spacing": [1, "after"],
     "babel/new-cap": 1,
     "babel/object-curly-spacing": [1, "always"]
-    // "babel/space-in-brackets": 1, // deprecated
   }
 }

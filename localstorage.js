@@ -17,8 +17,6 @@ export default class BrowserLocalStorageClass {
       localStorage.removeItem('Storage-Test');
     } catch (error) {
       throw new Error(error);
-      console.log(error);
-      hasLocalStorage = false;
     }
 
     this._isOK = false;
@@ -38,7 +36,7 @@ export default class BrowserLocalStorageClass {
     return this._prefix;
   }
 
-  set prefix(value = '') {
+  set prefix(value) {
     this._prefix = value;
   }
 
@@ -67,7 +65,7 @@ export default class BrowserLocalStorageClass {
   }
 
   hasKey(key) {
-    if (!this._isOK && key) {
+    if (!this._isOK || !key) {
       return false;
     }
 
@@ -75,9 +73,10 @@ export default class BrowserLocalStorageClass {
   }
 
   removeKey(key) {
-    if (this._isOK && key) {
-      localStorage.removeItem(`${this._prefixDecorator}${key}`);
+    if (!this._isOK || !key) {
+      return false;
     }
+    localStorage.removeItem(`${this._prefixDecorator}${key}`);
 
     return !this.hasKey(key);
   }
