@@ -26,10 +26,24 @@ export default class BrowserLocalStorageClass {
     this._prefix = dbName;
     this._prefixDecorator = this._prefix + (this._prefix && '-');
     this._isOK = true;
+    this._length = 0;
   }
 
   isAvailable() {
     return this._isOK;
+  }
+
+  get length() {
+    return this._length;
+  }
+
+  clear() {
+    const zeroLength = 0;
+
+    localStorage.clear();
+    this._length = localStorage.length;
+
+    return zeroLength === this._length;
   }
 
   get prefix() {
@@ -49,6 +63,7 @@ export default class BrowserLocalStorageClass {
       // Set value for a key
       try {
         localStorage.setItem(`${this._prefixDecorator}${key}`, JSON.stringify(value));
+        this._length = localStorage.length;
 
         return value === this.key(key);
       } catch (err) {

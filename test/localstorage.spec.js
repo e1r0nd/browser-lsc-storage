@@ -18,7 +18,7 @@ describe('# localStorage', () => {
     return {
       clear: () => {
         for (const key in storage) {
-          if ({}.propertyIsEnumerable.call(storage, 'key')) {
+          if ({}.propertyIsEnumerable.call(storage, key)) {
             delete storage[key];
           }
         }
@@ -85,7 +85,7 @@ describe('# localStorage', () => {
     expect(Local.hasKey('b-key')).to.be.false;
     expect(Local.removeKey('')).to.be.false;
   });
-  it('clear a storage', () => {
+  it('clear Storage', () => {
     const Local = new LocalClass('');
     const zeroLength = 0;
     expect(Local.key('c-key', 'c')).to.be.true;
