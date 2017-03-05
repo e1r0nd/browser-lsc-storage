@@ -5,6 +5,7 @@
  * Placed in public domain.
  */
 
+/* DRY, should be merged with localstorage.js */
 import SessionClass from '../sessionstorage';
 import chai from 'chai';
 import sinon from 'sinon';
