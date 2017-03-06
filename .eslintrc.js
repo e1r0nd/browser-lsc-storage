@@ -180,7 +180,7 @@ module.exports = {
     "no-unneeded-ternary": 1,
     "object-curly-spacing": 0, // see Babel section
     "one-var": [1, "never"],
-    "operator-assignment": [1, "never"],
+    "operator-assignment": [1, "always"],
     "padded-blocks": [0, "never"],
     "quote-props": [0, "as-needed"],
     "quotes": [1, "single"],
@@ -211,6 +211,7 @@ module.exports = {
     "max-statements": 0,
     "no-bitwise": 1,
     "no-plusplus": 0,
+    "no-useless-escape": 0,
 
     /* Babel */
     "babel/new-cap": 1,

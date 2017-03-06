@@ -8,8 +8,6 @@ import BrowserCookieStorageClass from './cookiesstorage.js';
 import BrowserLocalStorageClass from './localstorage.js';
 import BrowserSessionStorageClass from './sessionstorage.js';
 
-console.log(BrowserLocalStorageClass);
-
 export const browserStorage = {
   BrowserCookieStorageClass,
   BrowserLocalStorageClass,
