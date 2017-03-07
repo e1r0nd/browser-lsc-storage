@@ -14,6 +14,7 @@ const expect = chai.expect;
 describe('# Cookies', () => {
   const documentMock = { cookie: '' };
   Object.defineProperty(global, 'document', { value: documentMock });
+
   it('expect an Error if Cookies isn\'t defined', () => {
     sinon.stub(global.document);
     expect(() => {
@@ -23,7 +24,9 @@ describe('# Cookies', () => {
     }).to.throw(Error);
     sinon.restore(global.document);
   });
+
   const Cookies = new CookiesClass();
+
   it('check for availability', () => {
     expect(Cookies.isAvailable()).to.be.true;
   });
