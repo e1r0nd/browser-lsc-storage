@@ -63,5 +63,5 @@ const thisKey = Cookies.key(key); // read a key, returns String
 
 **removeKey:** delete a key
 ```javascript
-Cookies.removeKey(key); // returns nothing
+Cookies.removeKey(key); // returns always True
 ```

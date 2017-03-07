@@ -10,9 +10,7 @@ export default class BrowserCookiesStorageClass {
     if ('undefined' == typeof document || 'undefined' == typeof document.cookie) {
       throw new Error('Cookies are not available.');
     }
-    this.MAX_EXPIRE_DATE = new Date('Fri, 31 Dec 9999 23:59:59 UTC');
     this._isOK = true;
-    this._length = 0;
   }
 
   isAvailable() {
@@ -52,7 +50,7 @@ export default class BrowserCookiesStorageClass {
       }
       document.cookie = updatedCookie;
     } else {
-      // Read cookies
+      // Read a cookie
       const matches = document.cookie.match(new RegExp(
         `(?:^|; )${key.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1')}=([^;]*)`
       ));
