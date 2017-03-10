@@ -1,4 +1,4 @@
-# browser-lsc-storage [![Build Status](https://travis-ci.org/e1r0nd/browser-lsc-storage.svg?branch=master)](https://travis-ci.org/e1r0nd/browser-lsc-storage) [![GitHub version](https://badge.fury.io/gh/e1r0nd%2Fbrowser-lsc-storage.svg)](https://badge.fury.io/gh/e1r0nd%2Fbrowser-lsc-storage) [![Coverage Status](https://coveralls.io/repos/github/e1r0nd/browser-lsc-storage/badge.svg?branch=master)](https://coveralls.io/github/e1r0nd/browser-lsc-storage?branch=master) [![license](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+# browser-lsc-storage [![Build Status](https://travis-ci.org/e1r0nd/browser-lsc-storage.svg?branch=master)](https://travis-ci.org/e1r0nd/browser-lsc-storage) [![npm version](https://badge.fury.io/js/browser-lsc-storage.svg)](https://badge.fury.io/js/browser-lsc-storage) [![Coverage Status](https://coveralls.io/repos/github/e1r0nd/browser-lsc-storage/badge.svg?branch=master)](https://coveralls.io/github/e1r0nd/browser-lsc-storage?branch=master) [![license](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 localStorage, Session Storage and Cookies API wrapper for browser
 
 ## localStorage/sessionStorage Class
