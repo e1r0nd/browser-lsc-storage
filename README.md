@@ -65,3 +65,12 @@ const thisKey = Cookies.key(key); // read a key, returns String
 ```javascript
 Cookies.removeKey(key); // returns always True
 ```
+
+##Copyright
+coded by Anatol Marezhanyi aka e1r0nd//[CRG]
+
+http://linkedin.com/in/merezhany/<br>
+a.merezhanyi@gmail.com
+
+## License
+[MIT License](LICENSE.md) 
