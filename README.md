@@ -3,7 +3,7 @@ localStorage, Session Storage and Cookies API wrapper for browser
 
 ## TL;DR
 ```javascript
-import browserStorage from '../index';
+import browserStorage from '../index'; //import Storage API Object
 browserStorage.local.prefix = 'myApp'; //use localStorage and set a prefix
 browserStorage.local.key('key', 'value'); //store 'key' with 'value'
 console.log(browserStorage.local.key('key')); //read 'key'
