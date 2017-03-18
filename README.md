@@ -52,8 +52,8 @@ Local.removeKey(key); // returns True if successful
 ## Cookies Class
 ### Initialization
 ```javascript
-import CookiesClass from '../cookiesstorage';
-const Cookies = new CookiesClass();
+import CookiesClass from '../cookiesstorage'; // import Cookies API wrapper
+const Cookies = new CookiesClass(); // create Cookies Class new instance
 ```
 
 ### Methods
