@@ -8,9 +8,9 @@ browserStorage.local.prefix = 'myApp'; //use localStorage and set a prefix
 browserStorage.local.key('key', 'value'); //store 'key' with 'value'
 console.log(browserStorage.local.key('key')); //read 'key'
 
-const session = require('../index').default.session;
-session.key('session_id', '2017');
-console.log(session.key('session_id'));
+const session = require('../index').default.session; //import SessionStorage API wrapper
+session.key('session_id', '2017'); //store a key 'sesion_id' with value '2017'
+console.log(session.key('session_id')); //read 'session_id'
 ```
 
 ## localStorage/sessionStorage Class
