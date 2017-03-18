@@ -3,23 +3,23 @@ localStorage, Session Storage and Cookies API wrapper for browser
 
 ## TL;DR
 ```javascript
-import browserStorage from '../index'; //import Storage API Object
-browserStorage.local.prefix = 'myApp'; //use localStorage and set a prefix
-browserStorage.local.key('key', 'value'); //store 'key' with 'value'
-console.log(browserStorage.local.key('key')); //read 'key'
+import browserStorage from '../index'; // import Storage API Object
+browserStorage.local.prefix = 'myApp'; // use localStorage and set a prefix
+browserStorage.local.key('key', 'value'); // store 'key' with 'value'
+console.log(browserStorage.local.key('key')); // read 'key'
 
-const session = require('../index').default.session; //import SessionStorage API wrapper
-session.key('session_id', '2017'); //store a key 'sesion_id' with value '2017'
-console.log(session.key('session_id')); //read 'session_id'
+const session = require('../index').default.session; // import SessionStorage API wrapper
+session.key('session_id', '2017'); // store a key 'sesion_id' with value '2017'
+console.log(session.key('session_id')); // read 'session_id'
 ```
 
 ## localStorage/sessionStorage Class
 ### Initialization
 ```javascript
-import LocalClass from '../localstorage';
-const Local = new LocalClass(prefix);
-import SessionClass from '../sessionstorage';
-const Session = new SessionClass(prefix);
+import LocalClass from '../localstorage'; // import localStorage API wrapper
+const Local = new LocalClass(prefix); // create localStorage Class new instance
+import SessionClass from '../sessionstorage'; // import sessionStorage API wrapper
+const Session = new SessionClass(prefix); // create localStorage Class new instance
 ```
 
 ### Methods
