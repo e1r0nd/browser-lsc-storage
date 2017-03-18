@@ -1,6 +1,18 @@
 # browser-lsc-storage [![Build Status](https://travis-ci.org/e1r0nd/browser-lsc-storage.svg?branch=master)](https://travis-ci.org/e1r0nd/browser-lsc-storage) [![npm version](https://badge.fury.io/js/browser-lsc-storage.svg)](https://badge.fury.io/js/browser-lsc-storage) [![Coverage Status](https://coveralls.io/repos/github/e1r0nd/browser-lsc-storage/badge.svg?branch=master)](https://coveralls.io/github/e1r0nd/browser-lsc-storage?branch=master) [![license](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 localStorage, Session Storage and Cookies API wrapper for browser
 
+## TL;DR
+```javascript
+import browserStorage from '../index';
+browserStorage.local.prefix = 'myApp'; //use localStorage and set a prefix
+browserStorage.local.key('key', 'value'); //store 'key' with 'value'
+console.log(browserStorage.local.key('key')); //read 'key'
+
+const session = require('../index').default.session;
+session.key('session_id', '2017');
+console.log(session.key('session_id'));
+```
+
 ## localStorage/sessionStorage Class
 ### Initialization
 ```javascript

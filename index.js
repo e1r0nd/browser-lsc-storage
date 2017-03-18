@@ -8,8 +8,18 @@ import BrowserCookieStorageClass from './cookiesstorage.js';
 import BrowserLocalStorageClass from './localstorage.js';
 import BrowserSessionStorageClass from './sessionstorage.js';
 
-export const browserStorage = {
-  BrowserCookieStorageClass,
-  BrowserLocalStorageClass,
-  BrowserSessionStorageClass,
+const cookie = new BrowserCookieStorageClass();
+Object.freeze(cookie);
+const local = new BrowserLocalStorageClass();
+Object.freeze(local);
+const session = new BrowserSessionStorageClass();
+Object.freeze(session);
+
+const browserStorage = {
+  cookie,
+  local,
+  session,
 };
+Object.freeze(browserStorage);
+
+export default browserStorage;
