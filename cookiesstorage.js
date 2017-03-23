@@ -81,6 +81,12 @@ export default class BrowserCookiesStorageClass {
     return value === this.key(key);
   }
 
+  /**
+   * Check a cookie for availability
+   *
+   * @param  {String} key A cookie name
+   * @return {Boolean}    Present or not
+   */
   hasKey(key) {
     if (!this._isOK || !key) {
       return false;
