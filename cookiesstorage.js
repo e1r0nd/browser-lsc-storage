@@ -16,6 +16,11 @@ export default class BrowserCookiesStorageClass {
     this._isOK = true;
   }
 
+  /**
+   * Check Cookies Storage for availability
+   *
+   * @returns {Boolean} Available or not
+   */
   isAvailable() {
     return this._isOK;
   }
