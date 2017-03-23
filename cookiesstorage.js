@@ -86,6 +86,7 @@ export default class BrowserCookiesStorageClass {
    *
    * @param  {String} key A cookie name
    * @return {Boolean}    Present or not
+   * @example const res = Cookies.hasKey(key);
    */
   hasKey(key) {
     if (!this._isOK || !key) {
@@ -95,6 +96,13 @@ export default class BrowserCookiesStorageClass {
     return Boolean(this.key(key));
   }
 
+  /**
+   * Remove a cookie
+   *
+   * @param  {String} key A cookie's name
+   * @return {Boolean}    Always true
+   * @example Cookies.removeKey(key);
+   */
   removeKey(key) {
     if (!this._isOK || !key) {
       return false;
