@@ -1,7 +1,14 @@
 /**
- * Cookies Storage API wrapper class constructor
+ * Cookies Storage API wrapper сlass
  */
 export default class BrowserCookiesStorageClass {
+
+  /**
+   * Cookies Storage constructor
+   *
+   * @example import СookiesClass from '../cookiestorage';
+   * @example const cookie = new CookiesClass();
+   */
   constructor() {
     if ('undefined' == typeof document || 'undefined' == typeof document.cookie) {
       throw new Error('Cookies are not available.');
