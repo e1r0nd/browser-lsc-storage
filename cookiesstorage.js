@@ -25,6 +25,17 @@ export default class BrowserCookiesStorageClass {
     return this._isOK;
   }
 
+  /**
+   * Store or read a cookie
+   *
+   * @param  {String} key = ''     A name for the cookie
+   * @param  {String} value = ''   A value of the cookie
+   * @param  {Object} options = {} Additional options [domain, path, expires, Secure, HttpOnly]
+   * @return {Boolean}             For store: Success of not
+   * @return {String}              For read: Value
+   * @example Cookies.key('token', '12345');
+   * @example Cookies.key('token');
+   */
   key(key = '', value = '', options = {}) {
     if (!key || !this._isOK) {
       return false;
