@@ -89,6 +89,13 @@ export default class BrowserLocalStorageClass {
     }
   }
 
+  /**
+   * Check a key for availability
+   *
+   * @param  {String} key A key's name
+   * @returns {Boolean}   Present or not
+   * @example const res = Local.hasKey(key);
+   */
   hasKey(key) {
     if (!this._isOK || !key) {
       return false;
