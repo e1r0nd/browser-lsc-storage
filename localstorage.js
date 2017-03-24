@@ -1,11 +1,16 @@
 /**
- * Browser LSC Storage API // localstorage.js
- * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - February 2017
- * http://linkedin.com/in/merezhany/ a.merezhany@gmail.com
- * Placed in public domain.
+ * LocalStorage API wrapper сlass
  */
 
 export default class BrowserLocalStorageClass {
+
+  /**
+   * LocalStorage constructor
+   *
+   * @param  {sting} dbName = '' Prefix for database
+   * @example import LocalStorageClass from '../localstorage';
+   * @example const local = new LocalStorageClass();
+   */
   constructor(dbName = '') {
     let hasLocalStorage = true;
 
