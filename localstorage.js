@@ -49,6 +49,7 @@ export default class BrowserLocalStorageClass {
    * Check localStorage for availability
    *
    * @returns {Boolean} Available or not
+   * @example const ok = Local.isAvailable;
    */
   isAvailable() {
     return this._isOK;
@@ -58,6 +59,7 @@ export default class BrowserLocalStorageClass {
    * Get quantity of keys in DB
    *
    * @return {type}  number of keys
+   * @example let keysNumber = Local.length;
    */
   get length() {
     return this._length;
