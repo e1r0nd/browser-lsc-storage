@@ -6,7 +6,7 @@ export default class BrowserCookiesStorageClass {
   /**
    * Cookies Storage constructor
    *
-   * @example import СookiesClass from '../cookiestorage';
+   * @example import СookiesClass from '../cookiesstorage';
    * @example const cookie = new CookiesClass();
    */
   constructor() {
