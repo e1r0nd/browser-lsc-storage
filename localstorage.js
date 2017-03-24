@@ -58,7 +58,7 @@ export default class BrowserLocalStorageClass {
   /**
    * Get quantity of keys in DB
    *
-   * @returns {type}  A number of keys
+   * @returns {Number}  A number of keys
    * @example let keysNumber = Local.length;
    */
   get length() {
@@ -127,7 +127,7 @@ export default class BrowserLocalStorageClass {
    * Delete a key
    *
    * @param  {String} key A key's name
-   * @returns {Boolean}   returns True if successful
+   * @returns {Boolean}   Returns True if successful
    * @example Local.removeKey(key);
    */
   removeKey(key) {
