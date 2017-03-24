@@ -58,7 +58,7 @@ export default class BrowserLocalStorageClass {
   /**
    * Get quantity of keys in DB
    *
-   * @return {type}  number of keys
+   * @returns {type}  number of keys
    * @example let keysNumber = Local.length;
    */
   get length() {
