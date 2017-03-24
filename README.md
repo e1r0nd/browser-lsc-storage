@@ -49,6 +49,12 @@ const thisKey = Local.key(key); // read a key, returns String
 ```javascript
 Local.removeKey(key); // returns True if successful
 ```
+
+**length:** get quantity of keys in DB
+```javascript
+let keysNumber = Local.length; // returns a number of keys
+```
+
 ## Cookies Class
 ### Initialization
 ```javascript
