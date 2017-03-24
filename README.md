@@ -55,6 +55,11 @@ Local.removeKey(key); // returns True if successful
 let keysNumber = Local.length; // returns a number of keys
 ```
 
+**clear:** clear localStorage using prefix
+```javascript
+let res = Local.clear(); // returns True if cleared
+```
+
 ## Cookies Class
 ### Initialization
 ```javascript
