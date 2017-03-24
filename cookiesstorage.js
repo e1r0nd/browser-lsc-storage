@@ -13,6 +13,8 @@ export default class BrowserCookiesStorageClass {
     if ('undefined' == typeof document || 'undefined' == typeof document.cookie) {
       throw new Error('Cookies are not available.');
     }
+
+    /** @private */
     this._isOK = true;
   }
 
