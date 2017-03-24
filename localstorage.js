@@ -9,7 +9,7 @@ export default class BrowserLocalStorageClass {
    *
    * @param  {Sting} dbName = '' Prefix for database
    * @example import LocalStorageClass from '../localstorage';
-   * @example const local = new LocalStorageClass();
+   * @example const Local = new LocalStorageClass();
    */
   constructor(dbName = '') {
     let hasLocalStorage = true;
@@ -97,6 +97,13 @@ export default class BrowserLocalStorageClass {
     return Boolean(JSON.parse(localStorage.getItem(`${this._prefixDecorator}${key}`)));
   }
 
+  /**
+   * Delete a key
+   *
+   * @param  {String} key A key's name
+   * @returns {Boolean}   returns True if successful
+   * @example Local.removeKey(key);
+   */
   removeKey(key) {
     if (!this._isOK || !key) {
       return false;
