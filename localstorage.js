@@ -7,7 +7,7 @@ export default class BrowserLocalStorageClass {
   /**
    * LocalStorage constructor
    *
-   * @param  {sting} dbName = '' Prefix for database
+   * @param  {Sting} dbName = '' Prefix for database
    * @example import LocalStorageClass from '../localstorage';
    * @example const local = new LocalStorageClass();
    */
@@ -34,6 +34,11 @@ export default class BrowserLocalStorageClass {
     this._length = 0;
   }
 
+  /**
+   * Check localStorage for availability
+   *
+   * @returns {Boolean} Available or not
+   */
   isAvailable() {
     return this._isOK;
   }
