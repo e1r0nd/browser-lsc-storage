@@ -65,11 +65,19 @@ export default class BrowserLocalStorageClass {
     return this._length;
   }
 
+  /**
+   * Clear DB
+   *
+   * @returns {Boolean}  Cleared or not
+   * @example let res = Local.clear();
+   */
   clear() {
     const zeroLength = 0;
 
     /** @todo should clear keys only with prefix #3 */
     localStorage.clear();
+
+    /** @todo should check real num of keys #4 */
     this._length = 0;
 
     return zeroLength === this._length;
