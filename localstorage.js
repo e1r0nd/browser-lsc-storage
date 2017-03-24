@@ -55,9 +55,9 @@ export default class BrowserLocalStorageClass {
   }
 
   /**
-   * Get quantity
+   * Get quantity of keys in DB
    *
-   * @return {type}  description
+   * @return {type}  number of keys
    */
   get length() {
     return this._length;
