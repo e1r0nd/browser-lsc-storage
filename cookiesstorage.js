@@ -31,8 +31,8 @@ export default class BrowserCookiesStorageClass {
    * @param  {String} key = ''     A name for the cookie
    * @param  {String} value = ''   A value of the cookie
    * @param  {Object} options = {} Additional options [domain, path, expires, Secure, HttpOnly]
-   * @return {Boolean}             For store: Success of not
-   * @return {String}              For read: Value
+   * @returns {Boolean}             For store: Success of not
+   * @returns {String}              For read: Value
    * @example Cookies.key('token', '12345');
    * @example Cookies.key('token');
    */
@@ -85,7 +85,7 @@ export default class BrowserCookiesStorageClass {
    * Check a cookie for availability
    *
    * @param  {String} key A cookie name
-   * @return {Boolean}    Present or not
+   * @returns {Boolean}    Present or not
    * @example const res = Cookies.hasKey(key);
    */
   hasKey(key) {
@@ -100,7 +100,7 @@ export default class BrowserCookiesStorageClass {
    * Remove a cookie
    *
    * @param  {String} key A cookie's name
-   * @return {Boolean}    Always true
+   * @returns {Boolean}    Always true
    * @example Cookies.removeKey(key);
    */
   removeKey(key) {
