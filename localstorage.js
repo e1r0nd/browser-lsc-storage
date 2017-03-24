@@ -24,13 +24,22 @@ export default class BrowserLocalStorageClass {
       throw new Error(error);
     }
 
+    /** @private */
     this._isOK = false;
     if (!hasLocalStorage) {
       throw new Error('Local Storage is not available.');
     }
+
+    /** @private */
     this._prefix = dbName;
+
+    /** @private */
     this._prefixDecorator = this._prefix + (this._prefix && '-');
+
+    /** @private */
     this._isOK = true;
+
+    /** @private */
     this._length = 0;
   }
 
