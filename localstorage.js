@@ -39,7 +39,9 @@ export default class BrowserLocalStorageClass {
     /** @private */
     this._isOK = true;
 
-    /** @private */
+    /** @private
+     * @todo should calculate all keys with prefix #2
+     */
     this._length = 0;
   }
 
@@ -52,6 +54,11 @@ export default class BrowserLocalStorageClass {
     return this._isOK;
   }
 
+  /**
+   * Get quantity
+   *
+   * @return {type}  description
+   */
   get length() {
     return this._length;
   }
@@ -59,8 +66,9 @@ export default class BrowserLocalStorageClass {
   clear() {
     const zeroLength = 0;
 
+    /** @todo should clear keys only with prefix #3 */
     localStorage.clear();
-    this._length = localStorage.length;
+    this._length = 0;
 
     return zeroLength === this._length;
   }
@@ -82,7 +90,7 @@ export default class BrowserLocalStorageClass {
       // Set value for a key
       try {
         localStorage.setItem(`${this._prefixDecorator}${key}`, JSON.stringify(value));
-        this._length = localStorage.length;
+        this._length++;
 
         return value === this.key(key);
       } catch (err) {
@@ -125,6 +133,7 @@ export default class BrowserLocalStorageClass {
       return false;
     }
     localStorage.removeItem(`${this._prefixDecorator}${key}`);
+    this._length--;
 
     return !this.hasKey(key);
   }
