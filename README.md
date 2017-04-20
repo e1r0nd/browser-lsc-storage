@@ -62,7 +62,7 @@ let res = Local.clear(); // returns True if cleared
 ## Cookies Class
 ### Initialization
 ```javascript
-import CookiesClass from '../cookiesstorage'; // import Cookies API wrapper
+import CookiesClass from '../cookies'; // import Cookies API wrapper
 const Cookies = new CookiesClass(); // create Cookies Class new instance
 ```
 
