@@ -16,10 +16,9 @@ console.log(session.key('session_id')); // read 'session_id'
 ## localStorage/sessionStorage Class
 ### Initialization
 ```javascript
-import LocalClass from '../storage'; // import localStorage API wrapper
-const Local = new LocalClass(); // create localStorage Class new instance
-import SessionClass from '../storage'; // import sessionStorage API wrapper
-const Session = new SessionClass('sessionStorage'); // create sessionStorage Class new instance
+import StorageClass from '../storage'; // import Storage API wrapper
+const Local = new StorageClass(); // create localStorage Class new instance
+const Session = new StorageClass('sessionStorage'); // create sessionStorage Class new instance
 ```
 
 ### Methods
