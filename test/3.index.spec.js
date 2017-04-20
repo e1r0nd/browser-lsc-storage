@@ -4,10 +4,9 @@
  * http://linkedin.com/in/merezhany/ a.merezhany@gmail.com
  * Placed in public domain.
  */
-
-import browserStorage from '../index';
 import chai from 'chai';
 const expect = chai.expect;
+const browserStorage = require('../index').default;
 
 describe('# Storage include', () => {
   it('check Storage class for availability', () => {

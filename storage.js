@@ -1,25 +1,25 @@
 /**
- * LocalStorage API wrapper сlass
+ * LocalStorage and SessionStorage API wrapper сlass
  */
 
-export default class BrowserLocalStorageClass {
+export default class BrowserStorageClass {
 
   /**
    * LocalStorage constructor
    *
-   * @param  {Sting} dbName = '' Prefix for database
+   * @param {String} storageType = '' Sesison or Local Storage
    * @example import LocalStorageClass from '../localstorage';
    * @example const Local = new LocalStorageClass();
    */
-  constructor(dbName = '') {
+  constructor(storageType = 'localStorage') {
     let hasLocalStorage = true;
 
     try {
-      hasLocalStorage = 'undefined' !== typeof localStorage;
+      hasLocalStorage = 'undefined' !== typeof window[storageType];
       // Check Safari's private browsing mode
-      localStorage.setItem('Storage-Test', '1');
-      hasLocalStorage = '1' === localStorage.getItem('Storage-Test');
-      localStorage.removeItem('Storage-Test');
+      window[storageType].setItem('Storage-Test', '1');
+      hasLocalStorage = '1' === window[storageType].getItem('Storage-Test');
+      window[storageType].removeItem('Storage-Test');
     } catch (error) {
       throw new Error(error);
     }
@@ -31,13 +31,16 @@ export default class BrowserLocalStorageClass {
     }
 
     /** @private */
-    this._prefix = dbName;
+    this._prefix = '';
 
     /** @private */
-    this._prefixDecorator = this._prefix + (this._prefix && '-');
+    this._prefixDecorator = '';
 
     /** @private */
     this._isOK = true;
+
+    /** @private */
+    this._storageType = window[storageType];
 
     /** @private
      * @todo should calculate all keys with prefix #2
@@ -46,7 +49,7 @@ export default class BrowserLocalStorageClass {
   }
 
   /**
-   * Check localStorage for availability
+   * Check window[storageType] for availability
    *
    * @returns {Boolean} Available or not
    * @example const ok = Local.isAvailable;
@@ -75,7 +78,7 @@ export default class BrowserLocalStorageClass {
     const zeroLength = 0;
 
     /** @todo should clear keys only with prefix #3 */
-    localStorage.clear();
+    this._storageType.clear();
 
     /** @todo should check real num of keys #4 */
     this._length = 0;
@@ -89,6 +92,7 @@ export default class BrowserLocalStorageClass {
 
   set prefix(value) {
     this._prefix = value;
+    this._prefixDecorator = this._prefix + (this._prefix && '-');
   }
 
   key(key = '', value = '') {
@@ -99,7 +103,7 @@ export default class BrowserLocalStorageClass {
     if (value) {
       // Set value for a key
       try {
-        localStorage.setItem(`${this._prefixDecorator}${key}`, JSON.stringify(value));
+        this._storageType.setItem(`${this._prefixDecorator}${key}`, JSON.stringify(value));
         this._length++;
 
         return value === this.key(key);
@@ -112,7 +116,7 @@ export default class BrowserLocalStorageClass {
       }
     } else {
       // Read a key
-      return this._isOK && JSON.parse(localStorage.getItem(`${this._prefixDecorator}${key}`));
+      return this._isOK && JSON.parse(this._storageType.getItem(`${this._prefixDecorator}${key}`));
     }
   }
 
@@ -128,7 +132,7 @@ export default class BrowserLocalStorageClass {
       return false;
     }
 
-    return Boolean(JSON.parse(localStorage.getItem(`${this._prefixDecorator}${key}`)));
+    return Boolean(JSON.parse(this._storageType.getItem(`${this._prefixDecorator}${key}`)));
   }
 
   /**
@@ -142,7 +146,7 @@ export default class BrowserLocalStorageClass {
     if (!this._isOK || !key) {
       return false;
     }
-    localStorage.removeItem(`${this._prefixDecorator}${key}`);
+    this._storageType.removeItem(`${this._prefixDecorator}${key}`);
     this._length--;
 
     return !this.hasKey(key);

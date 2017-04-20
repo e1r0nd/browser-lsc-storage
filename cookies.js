@@ -1,7 +1,7 @@
 /**
  * Cookies Storage API wrapper сlass
  */
-export default class BrowserCookiesStorageClass {
+export default class BrowserCookiesClass {
 
   /**
    * Cookies Storage constructor

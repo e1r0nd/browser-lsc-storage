@@ -5,15 +5,14 @@
  * @author Anatol Marezhanyi
  * @example import browserStorage from '../index'
  */
-import BrowserCookieStorageClass from './cookiesstorage.js';
-import BrowserLocalStorageClass from './localstorage.js';
-import BrowserSessionStorageClass from './sessionstorage.js';
+import BrowserCookieClass from './cookies.js';
+import BrowserStorageClass from './storage.js';
 
-const cookie = new BrowserCookieStorageClass();
+const cookie = new BrowserCookieClass();
 Object.freeze(cookie);
-const local = new BrowserLocalStorageClass();
+const local = new BrowserStorageClass();
 Object.freeze(local);
-const session = new BrowserSessionStorageClass();
+const session = new BrowserStorageClass('sessionStorage');
 Object.freeze(session);
 
 const browserStorage = {

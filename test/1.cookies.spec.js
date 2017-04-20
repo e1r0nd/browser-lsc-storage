@@ -5,7 +5,7 @@
  * Placed in public domain.
  */
 
-import CookiesClass from '../cookiesstorage';
+import CookiesClass from '../cookies';
 import chai from 'chai';
 import sinon from 'sinon';
 
@@ -29,17 +29,30 @@ describe('# Cookies', () => {
 
   it('check for availability', () => {
     expect(Cookies.isAvailable()).to.be.true;
+    expect(Cookies.key()).to.be.false;
   });
   it('write & read a key-value pair', () => {
     expect(Cookies.key('b-key', 'b-value')).to.be.true;
     expect(Cookies.hasKey('b-key')).to.be.true;
     expect(Cookies.key('b-key')).to.equal('b-value');
   });
+  it('update a key-value pair', () => {
+    expect(Cookies.key('b-key', 'b1-value')).to.be.true;
+    expect(Cookies.hasKey('b-key')).to.be.true;
+    expect(Cookies.key('b-key')).to.equal('b1-value');
+  });
+  it('set expires for a cookie', () => {
+    expect(Cookies.key('b-key', 'b1-value', { 'expires': 100 })).to.be.true;
+    expect(Cookies.hasKey('b-key')).to.be.true;
+    expect(Cookies.key('b-key')).to.equal('b1-value');
+  });
   it('delete a key', () => {
+    expect(Cookies.removeKey()).to.be.false;
     Cookies.removeKey('b-key');
     expect(Cookies.key('b-key')).to.equal('');
   });
   it('check for a key', () => {
+    expect(Cookies.hasKey()).to.be.false;
     expect(Cookies.hasKey('a-key')).to.be.false;
   });
 });
