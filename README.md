@@ -16,10 +16,10 @@ console.log(session.key('session_id')); // read 'session_id'
 ## localStorage/sessionStorage Class
 ### Initialization
 ```javascript
-import LocalClass from '../localstorage'; // import localStorage API wrapper
-const Local = new LocalClass(prefix); // create localStorage Class new instance
-import SessionClass from '../sessionstorage'; // import sessionStorage API wrapper
-const Session = new SessionClass(prefix); // create localStorage Class new instance
+import LocalClass from '../storage'; // import localStorage API wrapper
+const Local = new LocalClass(); // create localStorage Class new instance
+import SessionClass from '../storage'; // import sessionStorage API wrapper
+const Session = new SessionClass('sessionStorage'); // create sessionStorage Class new instance
 ```
 
 ### Methods
@@ -90,10 +90,10 @@ Cookies.removeKey(key); // returns always True
 ```
 
 ## Copyright
-coded by Anatol Marezhanyi aka e1r0nd//[CRG]
+coded by Anatol Marezhanyi @e1r0nd_crg
 
 http://linkedin.com/in/merezhany/<br>
-a.merezhanyi@gmail.com
+https://www.youtube.com/c/AnatolMerezhanyi
 
 ## License
 [MIT License](LICENSE.md) 

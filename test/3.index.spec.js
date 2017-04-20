@@ -1,8 +1,7 @@
 /**
  * Browser LSC Storage API // index.spec.js
- * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - March 2017
- * http://linkedin.com/in/merezhany/ a.merezhany@gmail.com
- * Placed in public domain.
+ * coded by Anatol Merezhanyi @e1r0nd_crg
+ * https://www.youtube.com/c/AnatolMerezhanyi
  */
 import chai from 'chai';
 const expect = chai.expect;
