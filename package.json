@@ -1,6 +1,6 @@
 {
   "name": "browser-lsc-storage",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "localStorage, Session Storage and Cookies API wrapper for browser",
   "main": "index.js",
   "scripts": {

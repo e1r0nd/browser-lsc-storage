@@ -31,21 +31,17 @@ export default class BrowserStorageClass {
     }
 
     /** @private */
-    this._prefix = '';
-
-    /** @private */
-    this._prefixDecorator = '';
+    this._storageType = window[storageType];
 
     /** @private */
     this._isOK = true;
 
     /** @private */
-    this._storageType = window[storageType];
-
-    /** @private
-     * @todo should calculate all keys with prefix #2
-     */
-    this._length = 0;
+    this._props = {
+      length: 0,
+      prefix: '',
+      prefixDecorator: '',
+    };
   }
 
   /**
@@ -65,7 +61,7 @@ export default class BrowserStorageClass {
    * @example let keysNumber = Local.length;
    */
   get length() {
-    return this._length;
+    return this._props.length;
   }
 
   /**
@@ -81,18 +77,18 @@ export default class BrowserStorageClass {
     this._storageType.clear();
 
     /** @todo should check real num of keys #4 */
-    this._length = 0;
+    this._props.length = 0;
 
-    return zeroLength === this._length;
+    return zeroLength === this._props.length;
   }
 
   get prefix() {
-    return this._prefix;
+    return this._props.prefix;
   }
 
   set prefix(value) {
-    this._prefix = value;
-    this._prefixDecorator = this._prefix + (this._prefix && '-');
+    this._props.prefix = value;
+    this._props.prefixDecorator = this._props.prefix + (this._props.prefix && '-');
   }
 
   key(key = '', value = '') {
@@ -103,8 +99,8 @@ export default class BrowserStorageClass {
     if (value) {
       // Set value for a key
       try {
-        this._storageType.setItem(`${this._prefixDecorator}${key}`, JSON.stringify(value));
-        this._length++;
+        this._storageType.setItem(`${this._props.prefixDecorator}${key}`, JSON.stringify(value));
+        this._props.length++;
 
         return value === this.key(key);
       } catch (err) {
@@ -116,7 +112,7 @@ export default class BrowserStorageClass {
       }
     } else {
       // Read a key
-      return this._isOK && JSON.parse(this._storageType.getItem(`${this._prefixDecorator}${key}`));
+      return this._isOK && JSON.parse(this._storageType.getItem(`${this._props.prefixDecorator}${key}`));
     }
   }
 
@@ -132,7 +128,7 @@ export default class BrowserStorageClass {
       return false;
     }
 
-    return Boolean(JSON.parse(this._storageType.getItem(`${this._prefixDecorator}${key}`)));
+    return Boolean(JSON.parse(this._storageType.getItem(`${this._props.prefixDecorator}${key}`)));
   }
 
   /**
@@ -146,8 +142,8 @@ export default class BrowserStorageClass {
     if (!this._isOK || !key) {
       return false;
     }
-    this._storageType.removeItem(`${this._prefixDecorator}${key}`);
-    this._length--;
+    this._storageType.removeItem(`${this._props.prefixDecorator}${key}`);
+    this._props.length--;
 
     return !this.hasKey(key);
   }
