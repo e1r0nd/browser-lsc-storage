@@ -113,4 +113,26 @@ export default class BrowserCookiesClass {
 
     return true;
   }
+
+  /**
+   * Get an array of elements
+   *
+   * @returns {Array} Returns an array of elements
+   * @example Cookies.each().forEach();
+   */
+  each() {
+    if (!this._isOK) {
+      return false;
+    }
+
+    return document.cookie
+      .split(';')
+      .map((element) => {
+        const cookie = element.split('=');
+        const FIRST_ELEM = 0;
+        const SECOND_ELEM = 1;
+
+        return { [cookie[FIRST_ELEM]]: cookie[SECOND_ELEM] };
+      });
+  }
 }

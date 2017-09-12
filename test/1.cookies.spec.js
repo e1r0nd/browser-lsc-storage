@@ -36,6 +36,11 @@ describe('# Cookies', () => {
     expect(Cookies.hasKey('b-key')).to.be.true;
     expect(Cookies.key('b-key')).to.equal('b-value');
   });
+  it('use each method', () => {
+    expect(Cookies.key('b-key', 'b-value1')).to.be.true;
+    expect(Cookies.each()).to.be.an('array');
+    expect(Cookies.each()).to.include({ 'b-key': 'b-value1' });
+  });
   it('update a key-value pair', () => {
     expect(Cookies.key('b-key', 'b1-value')).to.be.true;
     expect(Cookies.hasKey('b-key')).to.be.true;
