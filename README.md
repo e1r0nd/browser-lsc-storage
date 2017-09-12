@@ -59,6 +59,11 @@ let keysNumber = Local.length; // returns a number of keys
 let res = Local.clear(); // returns True if cleared
 ```
 
+**each:** get all elements in the storage
+```javascript
+let res = Local.each(); // returns an array of elements in the storage
+```
+
 ## Cookies Class
 ### Initialization
 ```javascript
@@ -86,6 +91,11 @@ const thisKey = Cookies.key(key); // read a key, returns String
 **removeKey:** delete a key
 ```javascript
 Cookies.removeKey(key); // returns always True
+```
+
+**each:** get all cookies
+```javascript
+let res = Cookies.each(); // returns an array of elements
 ```
 
 ## Copyright
