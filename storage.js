@@ -147,4 +147,34 @@ export default class BrowserStorageClass {
 
     return !this.hasKey(key);
   }
+
+  /**
+   * Get an array of elements
+   *
+   * @returns {Array} Returns an array of elements in the storage
+   * @example Local.each().forEach();
+   */
+  each() {
+    const result = [];
+    if (!this._isOK) {
+      return false;
+    }
+
+    for (let index = 0; index < this._storageType.length; index++) {
+      let key = this._storageType.key(index);
+      const shiftPlusOne = 1;
+
+      // If the prefix is used
+      if (!this.prefix) {
+        result.push({ [key]: this.key(key) });
+      } else if (this.prefix && key.includes(this.prefix)) {
+        // Then cut it
+        key = key.substr(this.prefix.length + shiftPlusOne);
+        result.push({ [key]: this.key(key) });
+      }
+
+    }
+
+    return result;
+  }
 }

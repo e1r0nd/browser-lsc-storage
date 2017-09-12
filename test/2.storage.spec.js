@@ -81,6 +81,19 @@ describe('# localStorage', () => {
     expect(Local.key('b-key')).to.equal('b-value');
     expect(Local.key()).to.be.false;
   });
+  it('use each method', () => {
+    const Session = new StorageClass('sessionStorage');
+    expect(Session.prefix = 'test').to.equal('test');
+    expect(Session.key('a-key', 'a-value')).to.be.true;
+    expect(Session.key('b-key', 'b-value1')).to.be.true;
+    expect(Session.key('c-key', 'c-value')).to.be.true;
+    expect(Session.hasKey('b-key')).to.be.true;
+    expect(Session.key('b-key')).to.equal('b-value1');
+    expect(Session.each()).to.be.an('array');
+    expect(Session.each()).to.include({ 'a-key': 'a-value' });
+    expect(Session.each()).to.include({ 'b-key': 'b-value1' });
+    expect(Session.each()).to.include({ 'c-key': 'c-value' });
+  });
   it('delete a key', () => {
     const Local = new StorageClass();
     expect(Local.removeKey('b-key')).to.be.true;
@@ -164,9 +177,26 @@ describe('# sessionStorage', () => {
   it('write & read a key-value pair', () => {
     const Session = new StorageClass('sessionStorage');
     expect(Session.key('b-key', 'b-value')).to.be.true;
+    expect(Session.key('z-key', 'z-value')).to.be.true;
     expect(Session.hasKey('b-key')).to.be.true;
+    expect(Session.hasKey('z-key')).to.be.true;
     expect(Session.key('b-key')).to.equal('b-value');
+    expect(Session.key('z-key')).to.equal('z-value');
     expect(Session.key()).to.be.false;
+  });
+  it('use each method', () => {
+    const Session = new StorageClass('sessionStorage');
+    expect(Session.prefix = 'test').to.equal('test');
+    expect(Session.key('a-key', 'a-value')).to.be.true;
+    expect(Session.key('b-key', 'b-value1')).to.be.true;
+    expect(Session.key('c-key', 'c-value')).to.be.true;
+    expect(Session.hasKey('b-key')).to.be.true;
+    expect(Session.key('b-key')).to.equal('b-value1');
+    expect(Session.each()).to.be.an('array');
+    expect(Session.each()).to.not.include({ 'z-key': 'z-value' });
+    expect(Session.each()).to.include({ 'a-key': 'a-value' });
+    expect(Session.each()).to.include({ 'b-key': 'b-value1' });
+    expect(Session.each()).to.include({ 'c-key': 'c-value' });
   });
   it('delete a key', () => {
     const Session = new StorageClass('sessionStorage');
