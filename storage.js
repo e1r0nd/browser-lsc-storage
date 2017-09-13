@@ -186,6 +186,7 @@ export default class BrowserStorageClass {
    * @example Local.forEach((key, value, index) = > {});
    */
   forEach(callback) {
+    const shiftPlusOne = 1;
     if (!this._isOK) {
       return false;
     }
@@ -198,7 +199,7 @@ export default class BrowserStorageClass {
         callback(key, this.key(key), index);
       } else if (this.prefix && key.includes(this.prefix)) {
         // Then cut it
-        key = key.substr(this._props.prefixDecorator.length);
+        key = key.substr(this.prefix.length + shiftPlusOne);
 
         callback(key, this.key(key), index);
       }
