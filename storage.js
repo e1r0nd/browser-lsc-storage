@@ -177,4 +177,33 @@ export default class BrowserStorageClass {
 
     return result;
   }
+
+  /**
+   * Iterate over all elements and run a callback function
+   *
+   * @param  {Function} callback A callback function
+   * @returns Return always true
+   * @example Local.forEach((key, value, index) = > {});
+   */
+  forEach(callback) {
+    if (!this._isOK) {
+      return false;
+    }
+
+    for (let index = 0; index < this._storageType.length; index++) {
+      let key = this._storageType.key(index);
+
+      // If the prefix is used
+      if (!this.prefix) {
+        callback(key, this.key(key), index);
+      } else if (this.prefix && key.includes(this.prefix)) {
+        // Then cut it
+        key = key.substr(this._props.prefixDecorator.length);
+
+        callback(key, this.key(key), index);
+      }
+    }
+
+    return true;
+  }
 }

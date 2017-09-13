@@ -139,6 +139,7 @@ module.exports = {
 
     /* Node.js */
     "handle-callback-err": 1,
+    "callback-return": 0,
     "no-mixed-requires": 1,
     "no-new-require": 1,
     "no-path-concat": 1,

@@ -198,6 +198,19 @@ describe('# sessionStorage', () => {
     expect(Session.each()).to.include({ 'b-key': 'b-value1' });
     expect(Session.each()).to.include({ 'c-key': 'c-value' });
   });
+  it('use forEach method', () => {
+    const Session = new StorageClass('sessionStorage');
+    expect(Session.prefix = 'test').to.equal('test');
+    expect(Session.key('x-key', 'x-value')).to.be.true;
+    expect(Session.key('y-key', 'y-value')).to.be.true;
+    expect(Session.key('x-key')).to.equal('x-value');
+    expect(Session.key('y-key')).to.equal('y-value');
+    expect(Session.forEach((key, value, index) => {
+      Session.key(key, value + index);
+    }));
+    expect(Session.key('x-key')).to.equal('x-value5');
+    expect(Session.key('y-key')).to.equal('y-value6');
+  });
   it('delete a key', () => {
     const Session = new StorageClass('sessionStorage');
     expect(Session.removeKey('b-key')).to.be.true;
