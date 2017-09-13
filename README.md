@@ -64,6 +64,11 @@ let res = Local.clear(); // returns True if cleared
 let res = Local.each(); // returns an array of elements in the storage
 ```
 
+**forEach:** iterate over all elements and run a callback function
+```javascript
+Local.forEach((key, value, index) = > {}); // returns True always
+```
+
 ## Cookies Class
 ### Initialization
 ```javascript
