@@ -63,6 +63,17 @@ describe('# localStorage', () => {
     expect(Local.isAvailable()).to.be.true;
     expect(Local.hasKey()).to.be.false;
   });
+  it('check initial length', () => {
+    const lengthWithPrefix = 3;
+    const Local = new StorageClass();
+    expect(Local.isAvailable()).to.be.true;
+    expect(Local.key('x-key', 'y-value')).to.be.true;
+    expect(Local.prefix = 'new').to.equal('new');
+    expect(Local.key('a-key', 'a-value')).to.be.true;
+    expect(Local.key('b-key', 'b-value')).to.be.true;
+    expect(Local.key('c-key', 'c-value')).to.be.true;
+    expect(Local.length).to.equal(lengthWithPrefix);
+  });
   it('check for a prefix', () => {
     const Local = new StorageClass();
     Local.prefix = 'qwe';

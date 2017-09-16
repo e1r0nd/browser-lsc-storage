@@ -38,7 +38,7 @@ export default class BrowserStorageClass {
 
     /** @private */
     this._props = {
-      length: 0,
+      length: window[storageType].length,
       prefix: '',
       prefixDecorator: '',
     };
@@ -89,6 +89,7 @@ export default class BrowserStorageClass {
   set prefix(value) {
     this._props.prefix = value;
     this._props.prefixDecorator = this._props.prefix + (this._props.prefix && '-');
+    this._props.length = this.each().length;
   }
 
   key(key = '', value = '') {
@@ -162,14 +163,13 @@ export default class BrowserStorageClass {
 
     for (let index = 0; index < this._storageType.length; index++) {
       let key = this._storageType.key(index);
-      const shiftPlusOne = 1;
 
       // If the prefix is used
       if (!this.prefix) {
         result.push({ [key]: this.key(key) });
       } else if (this.prefix && key.includes(this.prefix)) {
         // Then cut it
-        key = key.substr(this.prefix.length + shiftPlusOne);
+        key = key.substr(this._props.prefixDecorator.length);
         result.push({ [key]: this.key(key) });
       }
 
@@ -182,11 +182,10 @@ export default class BrowserStorageClass {
    * Iterate over all elements and run a callback function
    *
    * @param  {Function} callback A callback function
-   * @returns Return always true
+   * @returns {Boolean} Return always true
    * @example Local.forEach((key, value, index) = > {});
    */
   forEach(callback) {
-    const shiftPlusOne = 1;
     if (!this._isOK) {
       return false;
     }
@@ -199,7 +198,7 @@ export default class BrowserStorageClass {
         callback(key, this.key(key), index);
       } else if (this.prefix && key.includes(this.prefix)) {
         // Then cut it
-        key = key.substr(this.prefix.length + shiftPlusOne);
+        key = key.substr(this._props.prefixDecorator.length);
 
         callback(key, this.key(key), index);
       }
