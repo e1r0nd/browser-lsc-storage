@@ -73,8 +73,9 @@ export default class BrowserStorageClass {
   clear() {
     const zeroLength = 0;
 
-    /** @todo should clear keys only with prefix #3 */
-    this._storageType.clear();
+    this.forEach((key) => {
+      this.removeKey(key);
+    });
     this._props.length = this.each().length;
 
     return zeroLength === this._props.length;
@@ -155,6 +156,7 @@ export default class BrowserStorageClass {
    */
   each() {
     const result = [];
+
     if (!this._isOK) {
       return false;
     }
@@ -184,23 +186,30 @@ export default class BrowserStorageClass {
    * @example Local.forEach((key, value, index) = > {});
    */
   forEach(callback) {
+    const result = [];
+
     if (!this._isOK) {
       return false;
     }
 
+    // Get the array of all keys
     for (let index = 0; index < this._storageType.length; index++) {
       let key = this._storageType.key(index);
 
       // If the prefix is used
       if (!this.prefix) {
-        callback(key, this.key(key), index);
+        result.push(key);
       } else if (this.prefix && key.includes(this.prefix)) {
         // Then cut it
         key = key.substr(this._props.prefixDecorator.length);
-
-        callback(key, this.key(key), index);
+        result.push(key);
       }
     }
+
+    // Fire a callback function for keys
+    result.forEach((key, index) => {
+      callback(key, this.key(key), index);
+    });
 
     return true;
   }

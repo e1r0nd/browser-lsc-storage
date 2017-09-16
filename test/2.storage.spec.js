@@ -93,17 +93,17 @@ describe('# localStorage', () => {
     expect(Local.key()).to.be.false;
   });
   it('use each method', () => {
-    const Session = new StorageClass('sessionStorage');
-    expect(Session.prefix = 'test').to.equal('test');
-    expect(Session.key('a-key', 'a-value')).to.be.true;
-    expect(Session.key('b-key', 'b-value1')).to.be.true;
-    expect(Session.key('c-key', 'c-value')).to.be.true;
-    expect(Session.hasKey('b-key')).to.be.true;
-    expect(Session.key('b-key')).to.equal('b-value1');
-    expect(Session.each()).to.be.an('array');
-    expect(Session.each()).to.include({ 'a-key': 'a-value' });
-    expect(Session.each()).to.include({ 'b-key': 'b-value1' });
-    expect(Session.each()).to.include({ 'c-key': 'c-value' });
+    const Local = new StorageClass();
+    expect(Local.prefix = 'test').to.equal('test');
+    expect(Local.key('a-key', 'a-value')).to.be.true;
+    expect(Local.key('b-key', 'b-value1')).to.be.true;
+    expect(Local.key('c-key', 'c-value')).to.be.true;
+    expect(Local.hasKey('b-key')).to.be.true;
+    expect(Local.key('b-key')).to.equal('b-value1');
+    expect(Local.each()).to.be.an('array');
+    expect(Local.each()).to.include({ 'a-key': 'a-value' });
+    expect(Local.each()).to.include({ 'b-key': 'b-value1' });
+    expect(Local.each()).to.include({ 'c-key': 'c-value' });
   });
   it('delete a key', () => {
     const Local = new StorageClass();
@@ -114,6 +114,8 @@ describe('# localStorage', () => {
   it('clear Storage', () => {
     const Local = new StorageClass();
     const zeroLength = 0;
+    expect(Local.key('x-key', 'x-value')).to.be.true;
+    expect(Local.prefix = 'asd').to.equal('asd');
     expect(Local.key('c-key', 'c')).to.be.true;
     expect(Local.key('d-key', 'd')).to.be.true;
     expect(Local.hasKey('d-key')).to.be.true;
@@ -121,6 +123,8 @@ describe('# localStorage', () => {
     expect(Local.hasKey('c-key')).to.be.false;
     expect(Local.hasKey('d-key')).to.be.false;
     expect(Local.length).to.equal(zeroLength);
+    expect(Local.prefix = '').to.equal('');
+    expect(Local.hasKey('x-key')).to.be.true;
   });
 });
 
@@ -219,8 +223,8 @@ describe('# sessionStorage', () => {
     expect(Session.forEach((key, value, index) => {
       Session.key(key, value + index);
     }));
-    expect(Session.key('x-key')).to.equal('x-value5');
-    expect(Session.key('y-key')).to.equal('y-value6');
+    expect(Session.key('x-key')).to.equal('x-value3');
+    expect(Session.key('y-key')).to.equal('y-value4');
   });
   it('delete a key', () => {
     const Session = new StorageClass('sessionStorage');
