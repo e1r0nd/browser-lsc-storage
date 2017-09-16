@@ -75,9 +75,7 @@ export default class BrowserStorageClass {
 
     /** @todo should clear keys only with prefix #3 */
     this._storageType.clear();
-
-    /** @todo should check real num of keys #4 */
-    this._props.length = 0;
+    this._props.length = this.each().length;
 
     return zeroLength === this._props.length;
   }
